@@ -6,7 +6,8 @@ app = Flask(__name__)
 CORS(app)  # Tarayıcıdan gelen istekleri kabul etmek için
 
 # Türkçe NLP modelini yükle
-nlp = stanza.Pipeline('tr')
+nlp = stanza.Pipeline('tr', use_gpu=False, processors="tokenize,pos")
+
 
 @app.route('/')
 def index():
