@@ -3,8 +3,8 @@ from keras._tf_keras.keras.preprocessing.sequence import pad_sequences
 import pickle
 import numpy as np
 
-# Kaydedilen modelin ve sözlüklerin yüklenmesi (gerektiğinde)
-model = load_model("pos_model.h5")
+# Kaydedilen modelin ve sözlüklerin yüklenmesi
+model = load_model("pos_tag.h5")
 
 # Kelime ve etiket sözlüklerinin yüklenmesi
 with open("word2idx.pkl", "rb") as f:
@@ -14,8 +14,6 @@ with open("tag2idx.pkl", "rb") as f:
 
 # Kelime ve etiket dizilerini oluşturma
 idx2tag = {i: t for t, i in tag2idx.items()}
-
-
 
 def predict_sentence(sentence, model, word2idx, idx2tag, max_len):
     '''
@@ -39,7 +37,7 @@ def predict_sentence(sentence, model, word2idx, idx2tag, max_len):
 
     return list(zip(tokens, pred_tags))
 
-
+# modelin içerisindeki tüm tagları ekrana verir (isteğe bağlı)
 for tag, idx in tag2idx.items():
     print(f"{tag}: {idx}")
 
